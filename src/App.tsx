@@ -8,8 +8,7 @@ function App(): JSX.Element {
                 UD CISC275 by Dean the Machine
             </header>
             <p>
-                Edit <code>src/App.tsx</code> and save. This page will
-                automatically reload.
+                Edit <code>src/App.tsx</code> and save. Hello World and hi Ian
             </p>
         </div>
     );
