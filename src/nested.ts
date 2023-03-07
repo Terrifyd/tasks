@@ -1,6 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
-import { makeBlankQuestion } from "./objects";
+import { duplicateQuestion, makeBlankQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -112,28 +112,32 @@ id,name,options,points,published
  * Check the unit tests for more examples!
  */
 export function toCSV(questions: Question[]): string {
-/*     const CSV = questions.map(
-        (questions: Question): string =>
-    // eslint-disable-next-line indent
-            questions.id.toString() +
-            ", " +
-            questions.name.toString() +
-            ", " +
-            questions.options.length.toString() +
-            ", " +
-            questions.points.toString() +
-            ", " +
-            questions.published.toString() +
-            "\n"
+    const newQuestions = questions.map(
+        (question: Question): Question => ({ ...question })
     );
-    return CSV; */
-
-    return questions
+    /* const CSV = newQuestions
         .map(
             (questions: Question): string =>
                 `${questions.id}, ${questions.name}, ${questions.options.length}, ${questions.points}, ${questions.published}`
         )
         .join("\n");
+ */
+    const header = "id,name,options,points,published\n";
+    const CSV = newQuestions
+        .map(
+            (question: Question): string =>
+                question.id +
+                "," +
+                question.name +
+                "," +
+                question.options.length +
+                "," +
+                question.points +
+                "," +
+                question.published
+        )
+        .join("\n");
+    return header + CSV;
 }
 
 /**
@@ -228,6 +232,19 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
+    const newQuestions = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
+
+    const targetQuestion = newQuestions.find(
+        (question: Question): boolean => question.id === targetId
+    );
+
+    targetQuestion.type = newQuestionType;
+    if (newQuestionType !== "multiple_choice_question") {
+        targetQuestion.options = [];
+    }
+    return newQuestions;
     return [];
 }
 
@@ -247,7 +264,23 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    return [];
+    const newQuestions = questions.map(
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options]
+        })
+    );
+
+    const targetQuestion = newQuestions.find(
+        (question: Question): boolean => question.id === targetId
+    );
+    if (targetOptionIndex === -1) {
+        targetQuestion.options = [...targetQuestion.options, newOption];
+    } else {
+        targetQuestion?.options.splice(targetOptionIndex, 1, newOption);
+    }
+
+    return newQuestions;
 }
 
 /***
@@ -261,5 +294,16 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number
 ): Question[] {
-    return [];
+    const newQuestions = questions.map(
+        (question: Question): Question => ({ ...question })
+    );
+
+    const targetIndex = newQuestions.findIndex(
+        (question: Question): boolean => question.id === targetId
+    );
+
+    const newQuestion = duplicateQuestion(newId, newQuestions[targetIndex]);
+
+    newQuestions.splice(targetIndex + 1, 0, newQuestion);
+    return newQuestions;
 }
