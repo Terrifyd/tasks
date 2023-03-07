@@ -212,11 +212,11 @@ export function renameQuestionById(
         (question: Question): Question => ({ ...question })
     );
 
-    const target = newQuestions.find(
+    const targetIndex = newQuestions.findIndex(
         (question: Question): boolean => question.id === targetId
     );
 
-    target.name = newName;
+    newQuestions[targetIndex].name = newName;
     return newQuestions;
 }
 
@@ -236,16 +236,15 @@ export function changeQuestionTypeById(
         (question: Question): Question => ({ ...question })
     );
 
-    const targetQuestion = newQuestions.find(
+    const targetIndex = newQuestions.findIndex(
         (question: Question): boolean => question.id === targetId
     );
 
-    targetQuestion.type = newQuestionType;
+    newQuestions[targetIndex].type = newQuestionType;
     if (newQuestionType !== "multiple_choice_question") {
-        targetQuestion.options = [];
+        newQuestions[targetIndex].options = [];
     }
     return newQuestions;
-    return [];
 }
 
 /**
@@ -271,13 +270,20 @@ export function editOption(
         })
     );
 
-    const targetQuestion = newQuestions.find(
+    const targetIndex = newQuestions.findIndex(
         (question: Question): boolean => question.id === targetId
     );
     if (targetOptionIndex === -1) {
-        targetQuestion.options = [...targetQuestion.options, newOption];
+        newQuestions[targetIndex].options = [
+            ...newQuestions[targetIndex].options,
+            newOption
+        ];
     } else {
-        targetQuestion?.options.splice(targetOptionIndex, 1, newOption);
+        newQuestions[targetIndex].options.splice(
+            targetOptionIndex,
+            1,
+            newOption
+        );
     }
 
     return newQuestions;
