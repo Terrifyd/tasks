@@ -49,7 +49,7 @@ export function isQuestion(message: string): boolean {
 export function convertYesNo(word: string): boolean | null {
     if (word === "YES" || word === "yes") {
         return true;
-    } else if (word === "No" || word == "no") {
+    } else if (word === "NO" || word == "no") {
         return false;
     } else {
         return null;
