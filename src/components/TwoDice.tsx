@@ -33,8 +33,8 @@ export function TwoDice(): JSX.Element {
                 <Button onClick={rollRight}>Roll Right</Button>
             </div>
             <div>
-                {diceRight === 1 && diceLeft === 1 && <div>Lost</div>}
-                {diceRight === diceLeft && diceRight !== 1 && <div>Won</div>}
+                {diceRight === 1 && diceLeft === 1 && <div>Lose</div>}
+                {diceRight === diceLeft && diceRight !== 1 && <div>Win</div>}
             </div>
         </div>
     );

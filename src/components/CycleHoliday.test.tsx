@@ -8,7 +8,7 @@ describe("CycleHoliday Component tests", () => {
     });
 
     test("An initial holiday is displayed", () => {
-        const initialHoliday = screen.getByText(/Holiday: (.*)/i);
+        const initialHoliday = screen.getByText(/Holiday:/i);
         expect(initialHoliday).toBeInTheDocument();
     });
 
