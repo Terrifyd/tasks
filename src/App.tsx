@@ -1,6 +1,12 @@
 import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./App.css";
+import { ChangeType } from "./components/ChangeType";
+import { RevealAnswer } from "./components/RevealAnswer";
+import { StartAttempt } from "./components/StartAttempt";
+import { TwoDice } from "./components/TwoDice";
+import { CycleHoliday } from "./components/CycleHoliday";
+import { Counter } from "./components/Counter";
 
 function App(): JSX.Element {
     return (
@@ -10,46 +16,18 @@ function App(): JSX.Element {
                     UD CISC275 by Dean the Machine
                 </span>
             </header>
-            <h1>text for texts sake</h1>
-            <p>
-                Edit <code>src/App.tsx</code> and save. This page will
-                automatically reload or not
-            </p>
-            Todo List:
-            <ol>
-                <li>- Task 3</li>
-                <li>- Contemplate meaningless of universe</li>
-                <li>- Shower and brush teeth</li>
-            </ol>
-            <img
-                src="https://upload.wikimedia.org/wikipedia/en/3/33/Patrick_Star.svg"
-                alt="A picture of my boy Patrick"
-            />
-            <Button onClick={() => console.log("Hello World!")}>
-                Log Hello World
-            </Button>
-            <Container>
-                <Row>
-                    <Col>
-                        <div
-                            style={{
-                                backgroundColor: "red",
-                                width: "500px",
-                                height: "70px"
-                            }}
-                        ></div>
-                    </Col>
-                    <Col>
-                        <div
-                            style={{
-                                backgroundColor: "red",
-                                width: "500px",
-                                height: "70px"
-                            }}
-                        ></div>
-                    </Col>
-                </Row>
-            </Container>
+            <hr></hr>
+            <Counter></Counter>
+            <hr />
+            <RevealAnswer></RevealAnswer>
+            <hr />
+            <StartAttempt></StartAttempt>
+            <hr />
+            <TwoDice></TwoDice>
+            <hr />
+            <ChangeType></ChangeType>
+            <hr />
+            <CycleHoliday></CycleHoliday>
         </div>
     );
 }
