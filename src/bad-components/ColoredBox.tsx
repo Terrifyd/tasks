@@ -19,10 +19,7 @@ function ChangeColor({
     );
 }
 
-function ColorPreview({
-    colorIndex,
-    setColorIndex
-}: colorIndexProps): JSX.Element {
+function ColorPreview({ colorIndex }: { colorIndex: number }): JSX.Element {
     return (
         <div
             data-testid="colored-box"
@@ -50,10 +47,7 @@ export function ColoredBox(): JSX.Element {
                     colorIndex={colorIndex}
                     setColorIndex={setColorIndex}
                 ></ChangeColor>
-                <ColorPreview
-                    colorIndex={colorIndex}
-                    setColorIndex={setColorIndex}
-                ></ColorPreview>
+                <ColorPreview colorIndex={colorIndex}></ColorPreview>
             </div>
         </div>
     );
