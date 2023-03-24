@@ -16,7 +16,50 @@ export function EditMode(): JSX.Element {
         setIsStudent(event.target.checked);
     }
 
-    return (
+    if (editing) {
+        return (
+            <div>
+                <Form.Check
+                    type="switch"
+                    id="is-editing-switch"
+                    label="Edit Form"
+                    checked={editing}
+                    onChange={updateEditing}
+                />
+                <Form.Group controlId="formCheckAnswer">
+                    <Form.Label>Name Here:</Form.Label>
+                    <Form.Control value={name} onChange={updateName} />
+                </Form.Group>
+                <Form.Check
+                    type="checkbox"
+                    id="is-student-check"
+                    label="Student?"
+                    checked={isStudent}
+                    onChange={updateStudent}
+                />
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <Form.Check
+                    type="switch"
+                    id="is-editing-switch"
+                    label="Edit Form"
+                    checked={editing}
+                    onChange={updateEditing}
+                />
+                <div>
+                    {!editing && isStudent && <div>{name} is a student</div>}
+                    {!editing && !isStudent && (
+                        <div>{name} is not a student</div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    /* return (
         <div>
             <Form.Check
                 type="switch"
@@ -46,5 +89,5 @@ export function EditMode(): JSX.Element {
                 {!editing && !isStudent && <div>{name} is not a student</div>}
             </h3>
         </div>
-    );
+    ); */
 }

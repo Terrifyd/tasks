@@ -13,7 +13,7 @@ export function ChangeType(): JSX.Element {
         setQuestion(
             questionType === "short_answer_question"
                 ? "multiple_choice_question"
-                : "multiple_choice_question"
+                : "short_answer_question"
         );
     }
 

@@ -16,7 +16,7 @@ const DEFAULT_COLOR = COLORS[6];
 export function ChangeColor(): JSX.Element {
     const [color, setColor] = useState<string>(DEFAULT_COLOR);
 
-    function updateColor(event: React.ChangeEvent<HTMLSelectElement>) {
+    function updateColor(event: React.ChangeEvent<HTMLInputElement>) {
         setColor(event.target.value);
     }
 
