@@ -13,7 +13,7 @@ export function ChangeType(): JSX.Element {
         setQuestion(
             questionType === "short_answer_question"
                 ? "multiple_choice_question"
-                : "multiple_choice_question"
+                : "short_answer_question"
         );
     }
 
@@ -21,9 +21,11 @@ export function ChangeType(): JSX.Element {
         <div>
             Question Type:
             <span>
-                {questionType === "short_answer_question"
-                    ? "Short Answer"
-                    : "Multiple Choice"}
+                {questionType === "short_answer_question" ? (
+                    <div>Short Answer</div>
+                ) : (
+                    <div>Multiple Choice</div>
+                )}
             </span>
             <Button onClick={changeQuestion}>Change Type</Button>
         </div>
